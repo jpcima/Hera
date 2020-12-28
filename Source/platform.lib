@@ -1,0 +1,16 @@
+// SPDX-License-Identifier: ISC
+
+//#################################### platform.lib ########################################
+// A library to handle platform specific code in Faust. Its official prefix is `pl`.
+//########################################################################################
+// It can be reimplemented to globally change the SR and the tablesize definitions
+
+//---------------------------------`(pl.)SR`-----------------------------------
+// Sample rate without upper or lower limit, adequate for oversampling.
+//-----------------------------------------------------------------------------
+SR = fconstant(int fSamplingFreq, <math.h>);
+
+//---------------------------------`(pl.)tablesize`----------------------------
+// Size of oscillator tables, more compact than default.
+//-----------------------------------------------------------------------------
+tablesize = 1 << 8;

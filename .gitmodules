@@ -1,0 +1,6 @@
+[submodule "Thirdparty/JUCE"]
+	path = Thirdparty/JUCE
+	url = https://github.com/juce-framework/JUCE.git
+[submodule "Thirdparty/foleys_gui_magic"]
+	path = Thirdparty/Modules/foleys_gui_magic
+	url = https://github.com/ffAudio/foleys_gui_magic.git
