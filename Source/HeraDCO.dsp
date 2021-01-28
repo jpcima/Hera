@@ -12,7 +12,7 @@ process(det, pw) = dco(f*det, pw, lsaw*mix, lpulse*mix, lsub*mix, lnoise*mix) wi
   lsaw = hslider("[2] saw level", 0.5, 0.0, 1.0, 0.01) : *(0.2) : fsmooth(10e-3);
   lpulse = hslider("[3] pulse level", 0.0, 0.0, 1.0, 0.01) : *(0.2) : fsmooth(10e-3);
   lsub = hslider("[4] sub level", 0.0, 0.0, 1.0, 0.01) : *(0.195) : fsmooth(10e-3);
-  lnoise = hslider("[5] noise level", 0.0, 0.0, 1.0, 0.01) : *(0.21) : fsmooth(10e-3);
+  lnoise = hslider("[5] noise level", 0.0, 0.0, 1.0, 0.01) : *(0.21) : max(ba.db2linear(-120)) : fsmooth(10e-3);
   lsum = lsaw+lpulse+lsub+lnoise;
   mix = 0.26/(0.26+(max(lsum, 0.26)-0.26)*0.3);
 };

@@ -181,7 +181,7 @@ public:
         float fSlow3 = (float(fHslider1) * fSlow1);
         float fSlow4 = ((0.200000003f * float(fHslider2)) * fSlow1);
         float fSlow5 = ((0.194999993f * float(fHslider3)) * fSlow1);
-        float fSlow6 = ((0.209999993f * float(fHslider4)) * fSlow1);
+        float fSlow6 = (std::max<float>(9.99999997e-07f, (0.209999993f * float(fHslider4))) * fSlow1);
         for (int i = 0; (i < count); i = (i + 1)) {
             fRec0[0] = (fSlow2 + (fSlow0 * fRec0[1]));
             fRec2[0] = (fSlow3 + (fSlow0 * fRec2[1]));
