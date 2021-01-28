@@ -39,6 +39,8 @@ target_sources(Hera
   "Source/HeraLFO.cpp"
   "Source/HeraLFOWithEnvelope.h"
   "Source/HeraLFOWithEnvelope.cpp"
+  "Source/HeraTables.h"
+  "Source/HeraTables.cpp"
   "Source/LadderFilter.h"
   "Source/LadderFilter.cpp"
   "Source/HeraProgram.h"

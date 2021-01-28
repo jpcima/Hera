@@ -1,4 +1,5 @@
 #include "Hera.h"
+#include "HeraTables.h"
 #include "LerpTable.h"
 #include "FaustHelpers.h"
 #include <juce_dsp/juce_dsp.h>
@@ -379,11 +380,11 @@ void HeraSynthesiser::parameterValueChanged(int parameterIndex, float newValue)
         break;
     }
     case kHeraParamLFORate:
-        lfo.setFrequency(21.8f * std::pow(newValue, 2.863f) + 0.4035f);
+        lfo.setFrequency(curveFromLfoRateSliderToFreq(newValue));
         break;
     case kHeraParamLFODelay:
-        lfo.setAttackDuration(0.0051f * std::exp(4.13f * (newValue + 0.307f)));
-        lfo.setDelayDuration(std::pow(newValue * 1.64f, 1.923f));
+        lfo.setDelayDuration(curveFromLfoDelaySliderToDelay(newValue));
+        lfo.setAttackDuration(curveFromLfoDelaySliderToAttack(newValue));
         break;
     case kHeraParamHPF:
         hpFilter.setAmount(newValue);

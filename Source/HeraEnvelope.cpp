@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "HeraEnvelope.h"
-#include "LerpTable.h"
+#include "HeraTables.h"
 #include <juce_dsp/juce_dsp.h>
 #include <array>
 #include <cstring>
@@ -266,22 +266,6 @@ static const std::array<EnvelopeSegment, 4> kHeraSegments {{
     {EnvelopeSegment::Shutdown, 0.001f},
 }};
 
-static const LerpTable &getAttackCurve()
-{
-    static const LerpTable curve(
-        [](double x) -> double { return 0.0099 * std::exp(5.8 * x); },
-        0.0, 1.0, 128);
-    return curve;
-}
-
-static const LerpTable &getDecayReleaseCurve()
-{
-    static const LerpTable curve(
-        [](double x) -> double { return 0.0495 * std::exp(6.0 * x); },
-        0.0, 1.0, 128);
-    return curve;
-}
-
 ///
 HeraEnvelope::HeraEnvelope()
     : envelope(std::vector<EnvelopeSegment>(kHeraSegments.begin(), kHeraSegments.end()))
@@ -296,13 +280,13 @@ void HeraEnvelope::setSampleRate(float sampleRate)
 
 void HeraEnvelope::setAttack(float value)
 {
-    attackDuration = getAttackCurve()(value);
+    attackDuration = curveFromAttackSliderToDuration(value);
     recalculateValues();
 }
 
 void HeraEnvelope::setDecay(float value)
 {
-    decayDuration = getDecayReleaseCurve()(value);
+    decayDuration = curveFromDecaySliderToDuration(value);
     recalculateValues();
 }
 
@@ -314,7 +298,7 @@ void HeraEnvelope::setSustain(float value)
 
 void HeraEnvelope::setRelease(float value)
 {
-    releaseDuration = getDecayReleaseCurve()(value);
+    releaseDuration = curveFromReleaseSliderToDuration(value);
     recalculateValues();
 }
 

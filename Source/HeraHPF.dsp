@@ -22,8 +22,4 @@ with {
   a0 = 1.0+b1;
 };
 
-cutoff(amount) = a*exp(b*amount)+c with {
-  a = 6.852994192667751e+01;
-  b = 4.065231515754802e+00;
-  c = 7.262863084806931e+01;
-};
+cutoff = ffunction(float curveFromHpfSliderToFreq(float), "HeraTables.h", "");

@@ -18,6 +18,8 @@ Compilation options: -lang cpp -inpl -scal -ftz 0
 #define FAUSTFLOAT float
 #endif
 
+/* link with : "" */
+#include "HeraTables.h"
 #include <algorithm>
 #include <cmath>
 #include <math.h>
@@ -127,7 +129,7 @@ public:
         FAUSTFLOAT *input0 = inputs[0];
         FAUSTFLOAT *output0 = outputs[0];
         float fSlow0 = float(fHslider0);
-        float fSlow1 = ((68.5299454f * std::exp((4.06523132f * fSlow0))) + 72.6286316f);
+        float fSlow1 = float(curveFromHpfSliderToFreq(float(fSlow0)));
         int iSlow2 = (fSlow1 > 0.0f);
         float fSlow3 = (fConst2 * std::min<float>(1.0f, (4.0f * fSlow0)));
         float fSlow4 = (fConst2 * std::exp((fConst3 * fSlow1)));
