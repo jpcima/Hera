@@ -8,7 +8,6 @@
 #include "HeraHPF.hxx"
 #include "HeraVCA.hxx"
 #include "HeraChorus.hxx"
-#include "LerpTable.h"
 #include "SmoothValue.h"
 #include <juce_audio_basics/juce_audio_basics.h>
 #include <juce_audio_processors/juce_audio_processors.h>
@@ -97,7 +96,6 @@ private:
     void processCutoffAndResonance(int numSamples);
 
 private:
-    const LerpTable &getSoftClipFunction();
     void softClip(juce::AudioBuffer<float> &buffer, int startSample, int numSamples);
 
 private:

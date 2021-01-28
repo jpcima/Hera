@@ -1,21 +1,11 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "HeraLFO.h"
-#include "LerpTable.h"
+#include "HeraTables.h"
 #include <cmath>
-
-const LerpTable &getSineTable()
-{
-    static const LerpTable sine(
-        [](double x) -> double { return std::sin(2.0 * M_PI * x); },
-        0.0, 1.0, 128);
-    return sine;
-}
 
 HeraLFO::HeraLFO()
 {
-    getSineTable();
-
     smoothFrequency_.setTimeConstant(10e-3);
 }
 
@@ -54,7 +44,7 @@ void HeraLFO::processBlock(float *output, int numFrames)
         break;
     case Sine:
     {
-        const LerpTable &sine = getSineTable();
+        const LerpTable &sine = curveSineLFO;
         for (int i = 0; i < numFrames; ++i) {
             output[i] = value = sine(phase);
             phase += smoothFrequency_.getNextValue() * samplePeriod;

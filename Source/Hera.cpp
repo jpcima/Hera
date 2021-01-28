@@ -1,14 +1,11 @@
 #include "Hera.h"
 #include "HeraTables.h"
-#include "LerpTable.h"
 #include "FaustHelpers.h"
 #include <juce_dsp/juce_dsp.h>
 #include <cmath>
 
 HeraSynthesiser::HeraSynthesiser()
 {
-    getSoftClipFunction();
-
     setVoiceStealingEnabled(true);
     setMinimumRenderingSubdivisionSize(16);
 
@@ -257,18 +254,10 @@ const juce::OwnedArray<juce::RangedAudioParameter> &HeraSynthesiser::getReferenc
     return parameters;
 }
 
-const LerpTable &HeraSynthesiser::getSoftClipFunction()
-{
-    static const LerpTable curve(
-        [](double x) -> double { return std::tanh(3.0 * x); },
-        //[](double x) -> double { return x - x * x * x / 3.0; },
-        -1.0, 1.0, 128);
-    return curve;
-}
-
 void HeraSynthesiser::softClip(juce::AudioBuffer<float> &buffer, int startSample, int numSamples)
 {
-    const LerpTable &softClip = getSoftClipFunction();
+    const LerpTable &softClip = curveSoftClipTanh3;
+    //const LerpTable &softClip = curveSoftClipCubic;
 
     int numChannels = buffer.getNumChannels();
     for (int c = 0; c < numChannels; ++c) {

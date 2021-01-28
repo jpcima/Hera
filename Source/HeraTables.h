@@ -12,3 +12,8 @@ extern const LerpTable curveFromHpfSliderToFreq;
 extern const LerpTable curveFromAttackSliderToDuration;
 extern const LerpTable curveFromDecaySliderToDuration;
 extern const LerpTable curveFromReleaseSliderToDuration;
+
+extern const LerpTable curveSoftClipTanh3;
+extern const LerpTable curveSoftClipCubic;
+
+extern const LerpTable curveSineLFO;
