@@ -6,13 +6,13 @@
 /* ------------------------------------------------------------
 author: "Jean Pierre Cimalando"
 license: "ISC"
-name: "HeraVCF"
+name: "DangeloVCF"
 Code generated with Faust 2.27.2 (https://faust.grame.fr)
 Compilation options: -lang cpp -inpl -scal -ftz 0
 ------------------------------------------------------------ */
 
-#ifndef __HeraVCF_H__
-#define __HeraVCF_H__
+#ifndef __DangeloVCF_H__
+#define __DangeloVCF_H__
 
 #ifndef FAUSTFLOAT
 #define FAUSTFLOAT float
@@ -22,13 +22,13 @@ Compilation options: -lang cpp -inpl -scal -ftz 0
 #include <cmath>
 #include <math.h>
 
-static float HeraVCF_faustpower2_f(float value)
+static float DangeloVCF_faustpower2_f(float value)
 {
     return (value * value);
 }
 
 #ifndef FAUSTCLASS
-#define FAUSTCLASS HeraVCF
+#define FAUSTCLASS DangeloVCF
 #endif
 
 #ifdef __APPLE__
@@ -38,7 +38,7 @@ static float HeraVCF_faustpower2_f(float value)
 
 
 // BEFORE class //
-class HeraVCF {
+class DangeloVCF {
     // BEGIN class //
 
 
@@ -181,27 +181,27 @@ public:
             float fTemp5 = (fTemp3 * (1.0f - fTemp4));
             float fTemp6 = std::min<float>(1.0f, std::max<float>(-1.0f, (1.6025641f * (fTemp0 + (2.0f * (fTemp2 * fRec0[1]))))));
             float fTemp7 = (fTemp4 + 1.0f);
-            float fTemp8 = ((fTemp5 * (0.0f - (fRec6[1] + (fTemp6 * (1.0f - (0.333333343f * HeraVCF_faustpower2_f(fTemp6))))))) / fTemp7);
+            float fTemp8 = ((fTemp5 * (0.0f - (fRec6[1] + (fTemp6 * (1.0f - (0.333333343f * DangeloVCF_faustpower2_f(fTemp6))))))) / fTemp7);
             fVec0[0] = fTemp8;
             fRec7[0] = (fRec7[1] + (fConst1 * (fTemp8 + fVec0[1])));
             float fTemp9 = std::min<float>(1.0f, std::max<float>(-1.0f, (1.6025641f * fRec7[0])));
-            fRec6[0] = (fTemp9 * (1.0f - (0.333333343f * HeraVCF_faustpower2_f(fTemp9))));
+            fRec6[0] = (fTemp9 * (1.0f - (0.333333343f * DangeloVCF_faustpower2_f(fTemp9))));
             float fTemp10 = ((fTemp5 * (fRec6[0] - fRec4[1])) / fTemp7);
             fVec1[0] = fTemp10;
             fRec5[0] = (fRec5[1] + (fConst1 * (fTemp10 + fVec1[1])));
             float fTemp11 = std::min<float>(1.0f, std::max<float>(-1.0f, (1.6025641f * fRec5[0])));
-            fRec4[0] = (fTemp11 * (1.0f - (0.333333343f * HeraVCF_faustpower2_f(fTemp11))));
+            fRec4[0] = (fTemp11 * (1.0f - (0.333333343f * DangeloVCF_faustpower2_f(fTemp11))));
             float fTemp12 = ((fTemp5 * (fRec4[0] - fRec2[1])) / fTemp7);
             fVec2[0] = fTemp12;
             fRec3[0] = (fRec3[1] + (fConst1 * (fTemp12 + fVec2[1])));
             float fTemp13 = std::min<float>(1.0f, std::max<float>(-1.0f, (1.6025641f * fRec3[0])));
-            fRec2[0] = (fTemp13 * (1.0f - (0.333333343f * HeraVCF_faustpower2_f(fTemp13))));
+            fRec2[0] = (fTemp13 * (1.0f - (0.333333343f * DangeloVCF_faustpower2_f(fTemp13))));
             float fTemp14 = ((fTemp5 * (fRec2[0] - fRec8[1])) / fTemp7);
             fVec3[0] = fTemp14;
             float fTemp15 = (fConst1 * (fTemp14 + fVec3[1]));
             fRec9[0] = (fRec9[1] + fTemp15);
             float fTemp16 = std::min<float>(1.0f, std::max<float>(-1.0f, (1.6025641f * fRec9[0])));
-            fRec8[0] = (fTemp16 * (1.0f - (0.333333343f * HeraVCF_faustpower2_f(fTemp16))));
+            fRec8[0] = (fTemp16 * (1.0f - (0.333333343f * DangeloVCF_faustpower2_f(fTemp16))));
             fRec1[0] = (fRec1[1] + fTemp15);
             fRec0[0] = fRec1[0];
             output0[i] = FAUSTFLOAT(fRec0[0]);

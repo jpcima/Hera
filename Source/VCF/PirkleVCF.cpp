@@ -1,30 +1,28 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "LadderFilter.h"
-#include <cmath>
+#include "PirkleVCF.h"
+#include "LerpTable.h"
 
-static constexpr float coeffsOfMode[][5] = {
-    /* LPF2 */ { 0.0f, 0.0f, 1.0f, 0.0f, 0.0f },
-    /* LPF4 */ { 0.0f, 0.0f, 0.0f, 0.0f, 1.0f },
-    /* BPF2 */ { 0.0f, 2.0f, -2.0f, 0.0f, 0.0f },
-    /* BPF4 */ { 0.0f, 0.0f, 4.0f, -8.0f, 4.0f },
-    /* HPF2 */ { 1.0f, -2.0f, 1.0f, 0.0f, 0.0f },
-    /* HPF4 */ { 1.0f, -4.0f, 6.0f, -4.0f, 1.0f },
-};
+static const LerpTable &getCutoffFactorTable()
+{
+    static const LerpTable table(
+        [](double x) -> double { return std::tan(x * M_PI); },
+        0.0f, 0.49f, 512);
+    return table;
+}
 
-///
-LadderFilterOld::LadderFilterOld()
+HeraVCF_Pirkle::HeraVCF_Pirkle()
 {
     getCutoffFactorTable();
 }
 
-void LadderFilterOld::setSampleRate(float newRate)
+void HeraVCF_Pirkle::setSampleRate(float newRate)
 {
     sampleRate = newRate;
     reset();
 }
 
-void LadderFilterOld::processNextBlock(float *inputAndOutput, const float *cutoff, const float *resonance, int numSamples)
+void HeraVCF_Pirkle::processNextBlock(float *inputAndOutput, const float *cutoff, const float *resonance, int numSamples)
 {
     float samplePeriod = 1.0f / sampleRate;
     const LerpTable &cutoffTable = getCutoffFactorTable();
@@ -34,7 +32,7 @@ void LadderFilterOld::processNextBlock(float *inputAndOutput, const float *cutof
     float z3 = z[2];
     float z4 = z[3];
 
-    const float *coeffs = coeffsOfMode[mode];
+    const float coeffs[] = /* LPF4 */ { 0.0f, 0.0f, 0.0f, 0.0f, 1.0f };
 
     for (int i = 0; i < numSamples; ++i) {
         float cutoffFactor = cutoffTable(cutoff[i] * samplePeriod);
@@ -84,15 +82,7 @@ void LadderFilterOld::processNextBlock(float *inputAndOutput, const float *cutof
     z[3] = z4;
 }
 
-const LerpTable &LadderFilterOld::getCutoffFactorTable()
-{
-    static const LerpTable table(
-        [](double x) -> double { return std::tan(x * M_PI); },
-        0.0f, 0.49f, 512);
-    return table;
-}
-
-void LadderFilterOld::reset()
+void HeraVCF_Pirkle::reset()
 {
     z[0] = 0;
     z[1] = 0;

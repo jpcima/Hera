@@ -39,10 +39,9 @@ target_sources(Hera
   "Source/HeraLFO.cpp"
   "Source/HeraLFOWithEnvelope.h"
   "Source/HeraLFOWithEnvelope.cpp"
+  "Source/HeraVCF.h"
   "Source/HeraTables.h"
   "Source/HeraTables.cpp"
-  "Source/LadderFilter.h"
-  "Source/LadderFilter.cpp"
   "Source/HeraProgram.h"
   "Source/HeraProgram.cpp"
   "Source/PluginEditor.cpp"
@@ -54,7 +53,14 @@ target_sources(Hera
   "Source/bbd_filter.cpp"
   "Source/bbd_filter.h"
   "Source/bbd_line.cpp"
-  "Source/bbd_line.h")
+  "Source/bbd_line.h"
+  "Source/VCF/DangeloVCF.h"
+  "Source/VCF/PirkleVCF.h"
+  "Source/VCF/PirkleVCF.cpp")
+
+target_include_directories(Hera
+  PRIVATE
+  "Source")
 
 target_compile_definitions(Hera
   PUBLIC

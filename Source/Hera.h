@@ -4,7 +4,7 @@
 #include "HeraEnvelope.h"
 #include "HeraLFOWithEnvelope.h"
 #include "HeraDCO.hxx"
-#include "LadderFilter.h"
+#include "HeraVCF.h"
 #include "HeraHPF.hxx"
 #include "HeraVCA.hxx"
 #include "HeraChorus.hxx"
@@ -174,7 +174,7 @@ private:
     HeraSynthesiser *synthesiser = nullptr;
     int vcaType = kHeraVCATypeEnvelope;
     HeraDCO dco;
-    LadderFilter vcf;
+    HeraVCF vcf;
     HeraEnvelope normalEnvelope;
     HeraEnvelope gateEnvelope;
     OnePoleSmoothValue smoothPWMDepth;

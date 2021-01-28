@@ -31,8 +31,8 @@ format Source/HeraHPF.hxx
 faust -inpl -cn HeraVCA Source/HeraVCA.dsp > Source/HeraVCA.hxx
 format Source/HeraVCA.hxx
 
-faust -inpl -cn HeraVCF Source/HeraVCF.dsp > Source/HeraVCF.hxx
-format Source/HeraVCF.hxx
+faust -inpl -cn DangeloVCF Source/VCF/DangeloVCF.dsp > Source/VCF/DangeloVCF.hxx
+format Source/VCF/DangeloVCF.hxx
 
 faust -inpl -cn HeraChorus Source/HeraChorus.dsp > Source/HeraChorus.hxx
 insert_at_tag Source/HeraChorus.hxx 'BEFORE class' '#include "bbd_line.h"'
