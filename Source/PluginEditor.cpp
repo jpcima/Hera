@@ -2,10 +2,11 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include "BinaryData.h"
 
 //==============================================================================
 HeraAudioProcessorEditor::HeraAudioProcessorEditor(foleys::MagicProcessorState &magicState)
-    : MagicPluginEditor(magicState)
+    : MagicPluginEditor(magicState, BinaryData::MagicUI_xml, BinaryData::MagicUI_xmlSize)
 {
 }
 

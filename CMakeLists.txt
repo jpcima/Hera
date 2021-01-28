@@ -81,7 +81,8 @@ target_link_libraries(Hera
 ###
 juce_add_binary_data(HeraData
   SOURCES
-  "Resources/presets.pak")
+  "Resources/presets.pak"
+  "Resources/MagicUI.xml")
 
 set_target_properties(HeraData PROPERTIES
   POSITION_INDEPENDENT_CODE ON)
