@@ -181,12 +181,8 @@ juce::RangedAudioParameter *HeraSynthesiser::createParameter(int index, HeraPara
         param = new juce::AudioParameterFloat("VCFResonance", "VCF resonance", juce::NormalisableRange<float>{0.0f, 1.0f}, 0.0f);
         domain = kHeraParameterIsForSynth;
         break;
-    case kHeraParamVCFEnvelopePolarity:
-        param = new juce::AudioParameterChoice("VCFPolarity", "VCF envelope mod polarity", juce::StringArray{"Negative", "Positive"}, 0);
-        domain = kHeraParameterIsForSynth;
-        break;
     case kHeraParamVCFEnvelopeModDepth:
-        param = new juce::AudioParameterFloat("VCFEnv", "VCF envelope mod depth", juce::NormalisableRange<float>{0.0f, 1.0f}, 0.0f);
+        param = new juce::AudioParameterFloat("VCFEnv", "VCF envelope mod depth", juce::NormalisableRange<float>{-1.0f, 1.0f}, 0.0f);
         domain = kHeraParameterIsForSynth;
         break;
     case kHeraParamVCFLFOModDepth:
@@ -356,17 +352,9 @@ void HeraSynthesiser::parameterValueChanged(int parameterIndex, float newValue)
     case kHeraParamVCFResonance:
         smoothResonance.setTargetValue(newValue);
         break;
-    case kHeraParamVCFEnvelopePolarity: {
-        vcfEnvPolarity = (int)newValue;
-        float sign = (vcfEnvPolarity == kHeraVCFEnvelopeNegative) ? -1.0f : 1.0f;
-        smoothVCFEnvModDepth.setTargetValue(std::copysign(smoothVCFEnvModDepth.getTargetValue(), sign));
+    case kHeraParamVCFEnvelopeModDepth:
+        smoothVCFEnvModDepth.setTargetValue(newValue);
         break;
-    }
-    case kHeraParamVCFEnvelopeModDepth: {
-        float sign = (vcfEnvPolarity == kHeraVCFEnvelopeNegative) ? -1.0f : 1.0f;
-        smoothVCFEnvModDepth.setTargetValue(std::copysign(newValue, sign));
-        break;
-    }
     case kHeraParamVCFLFOModDepth:
         smoothVCFLFOModDepth.setTargetValue(newValue);
         break;

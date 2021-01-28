@@ -33,7 +33,6 @@ enum {
     kHeraParamPitchModDepth,
     kHeraParamVCFCutoff,
     kHeraParamVCFResonance,
-    kHeraParamVCFEnvelopePolarity,
     kHeraParamVCFEnvelopeModDepth,
     kHeraParamVCFLFOModDepth,
     kHeraParamVCFKeyboardModDepth,
@@ -65,11 +64,6 @@ enum {
 enum {
     kHeraLFOManual,
     kHeraLFOAuto,
-};
-
-enum {
-    kHeraVCFEnvelopeNegative,
-    kHeraVCFEnvelopePositive,
 };
 
 enum HeraParameterDomain {
@@ -115,7 +109,6 @@ private:
     OnePoleSmoothValue smoothPitchModDepth;
     OnePoleSmoothValue smoothCutoff { 1.0f };
     OnePoleSmoothValue smoothResonance;
-    int vcfEnvPolarity = kHeraVCFEnvelopeNegative;
     OnePoleSmoothValue smoothVCFEnvModDepth;
     OnePoleSmoothValue smoothVCFLFOModDepth;
     OnePoleSmoothValue smoothVCFKeyboardModDepth;
