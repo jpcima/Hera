@@ -25,10 +25,10 @@ tableTanh(x) = value with {
   extent = 3.0;
   points = 128;
   //
-  expr = (ba.time/float(points)) : *(2.0*extent) : -(extent) : ma.tanh;
+  expr = (ba.time/float(points-1)) : *(2.0*extent) : -(extent) : ma.tanh;
   read = max(0) : min(points-1) : rdtable(points, expr);
   //
-  pos = x : +(extent) : *(points*0.5/extent);
+  pos = x : +(extent) : *((points-1)*0.5/extent);
   mu = pos-int(pos);
   value = read(int(pos))+mu*(read(1+int(pos))-read(int(pos)));
 };

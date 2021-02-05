@@ -75,7 +75,7 @@ public:
     {
         for (int i = 0; (i < count); i = (i + 1)) {
             iRec3[0] = (iRec3[1] + 1);
-            table[i] = float(tanhf(float(((0.046875f * float((iRec3[0] + -1))) + -3.0f))));
+            table[i] = float(tanhf(float(((0.0472440943f * float((iRec3[0] + -1))) + -3.0f))));
             iRec3[1] = iRec3[0];
         }
     }
@@ -213,31 +213,31 @@ public:
             float fTemp0 = float(input0[i]);
             float fTemp1 = float(input1[i]);
             float fTemp2 = float(input2[i]);
-            float fTemp3 = (21.333334f * (fRec0[1] + 3.0f));
+            float fTemp3 = (21.166666f * (fRec0[1] + 3.0f));
             int iTemp4 = int(fTemp3);
             float fTemp5 = ftbl0JpcVCFSIG0[std::min<int>(127, std::max<int>(0, iTemp4))];
             iRec10[0] = ((1103515245 * iRec10[1]) + 12345);
             float fTemp6 = (4.65661276e-14f * float(iRec10[0]));
-            float fTemp7 = (21.333334f * ((fTemp0 + (((fTemp5 + ((fTemp3 - float(iTemp4)) * (ftbl0JpcVCFSIG0[std::min<int>(127, std::max<int>(0, (iTemp4 + 1)))] - fTemp5))) * (0.0f - (4.0f * fTemp2))) + fTemp6)) + 3.0f));
+            float fTemp7 = (21.166666f * ((fTemp0 + (((fTemp5 + ((fTemp3 - float(iTemp4)) * (ftbl0JpcVCFSIG0[std::min<int>(127, std::max<int>(0, (iTemp4 + 1)))] - fTemp5))) * (0.0f - (4.0f * fTemp2))) + fTemp6)) + 3.0f));
             int iTemp8 = int(fTemp7);
             float fTemp9 = ftbl0JpcVCFSIG0[std::min<int>(127, std::max<int>(0, iTemp8))];
             float fTemp10 = ((fConst2 * fTemp1) + 1.0f);
             float fTemp11 = ((fTemp1 * ((fTemp9 + ((fTemp7 - float(iTemp8)) * (ftbl0JpcVCFSIG0[std::min<int>(127, std::max<int>(0, (iTemp8 + 1)))] - fTemp9))) - fRec8[1])) / fTemp10);
             fRec8[0] = (fRec8[1] + (fConst1 * fTemp11));
             float fRec9 = (fRec8[1] + (fConst2 * fTemp11));
-            float fTemp12 = (21.333334f * ((fRec9 + fTemp6) + 3.0f));
+            float fTemp12 = (21.166666f * ((fRec9 + fTemp6) + 3.0f));
             int iTemp13 = int(fTemp12);
             float fTemp14 = ftbl0JpcVCFSIG0[std::min<int>(127, std::max<int>(0, iTemp13))];
             float fTemp15 = ((fTemp1 * ((fTemp14 + ((fTemp12 - float(iTemp13)) * (ftbl0JpcVCFSIG0[std::min<int>(127, std::max<int>(0, (iTemp13 + 1)))] - fTemp14))) - fRec6[1])) / fTemp10);
             fRec6[0] = (fRec6[1] + (fConst1 * fTemp15));
             float fRec7 = (fRec6[1] + (fConst2 * fTemp15));
-            float fTemp16 = (21.333334f * ((fRec7 + fTemp6) + 3.0f));
+            float fTemp16 = (21.166666f * ((fRec7 + fTemp6) + 3.0f));
             int iTemp17 = int(fTemp16);
             float fTemp18 = ftbl0JpcVCFSIG0[std::min<int>(127, std::max<int>(0, iTemp17))];
             float fTemp19 = ((fTemp1 * ((fTemp18 + ((fTemp16 - float(iTemp17)) * (ftbl0JpcVCFSIG0[std::min<int>(127, std::max<int>(0, (iTemp17 + 1)))] - fTemp18))) - fRec4[1])) / fTemp10);
             fRec4[0] = (fRec4[1] + (fConst1 * fTemp19));
             float fRec5 = (fRec4[1] + (fConst2 * fTemp19));
-            float fTemp20 = (21.333334f * ((fRec5 + fTemp6) + 3.0f));
+            float fTemp20 = (21.166666f * ((fRec5 + fTemp6) + 3.0f));
             int iTemp21 = int(fTemp20);
             float fTemp22 = ftbl0JpcVCFSIG0[std::min<int>(127, std::max<int>(0, iTemp21))];
             float fTemp23 = ((fTemp1 * ((fTemp22 + ((fTemp20 - float(iTemp21)) * (ftbl0JpcVCFSIG0[std::min<int>(127, std::max<int>(0, (iTemp21 + 1)))] - fTemp22))) - fRec1[1])) / fTemp10);
