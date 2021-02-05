@@ -34,6 +34,9 @@ format Source/HeraVCA.hxx
 faust -inpl -cn DangeloVCF Source/VCF/DangeloVCF.dsp > Source/VCF/DangeloVCF.hxx
 format Source/VCF/DangeloVCF.hxx
 
+faust -inpl -cn JpcVCF Source/VCF/JpcVCF.dsp > Source/VCF/JpcVCF.hxx
+format Source/VCF/JpcVCF.hxx
+
 faust -inpl -cn HeraChorus Source/HeraChorus.dsp > Source/HeraChorus.hxx
 insert_at_tag Source/HeraChorus.hxx 'BEFORE class' '#include "bbd_line.h"'
 insert_at_tag Source/HeraChorus.hxx 'END class' 'private:'
