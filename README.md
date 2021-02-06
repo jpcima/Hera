@@ -6,7 +6,7 @@ Juno 60 emulation synthesizer, with support of MPE.
 
 This synthesizer is considered of **alpha quality** currently.  
 It can produce some decent sounds, but the timbres can, and will most likely change in future revisions.  
-Compatibility will not guaranteed. It is known that the emulation is not accurate in many aspects.
+Compatibility will not be guaranteed. It is known that the emulation is not accurate in many aspects.
 
 The work is based partially on reverse-engineering and code made by others. See references [1] [2].  
 Accordingly, the GPL license applies to this project.
