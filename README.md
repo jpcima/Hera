@@ -1,6 +1,6 @@
 # Hera
 
-Juno emulation synthesizer, with support of MPE.
+Juno 60 emulation synthesizer, with support of MPE.
 
 ## About
 
