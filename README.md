@@ -16,7 +16,7 @@ Accordingly, the GPL license applies to this project.
 Any contributions will be welcome.
 
 - [ ] add the manual LFO trigger
-- [ ] improve the VCF model; excessive self-oscillation
+- [ ] improve the VCF model; excessive self-oscillation (eg. Clavichord 2)
 - [ ] add the arpeggiator
 - [ ] envelope release has to go through decay first
 - [ ] add preset management inside the editor, which includes selecting and renaming
