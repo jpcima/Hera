@@ -78,6 +78,12 @@ target_link_libraries(Hera
   juce::juce_recommended_lto_flags)
   #juce::juce_recommended_warning_flags
 
+if(MSVC)
+  target_compile_options(Hera PRIVATE "/fp:fast")
+else()
+  target_compile_options(Hera PRIVATE "-ffast-math")
+endif()
+
 ###
 juce_add_binary_data(HeraData
   SOURCES
