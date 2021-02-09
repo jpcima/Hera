@@ -131,6 +131,16 @@ target_link_libraries(Hera
   foleys::foleys_gui_magic)
 
 ###
+juce_add_modules(
+  ALIAS_NAMESPACE VFLib
+  "Thirdparty/Modules/VFLib/vf_core")
+
+###
+target_link_libraries(Hera
+  PRIVATE
+  VFLib::vf_core)
+
+###
 add_library(hiir INTERFACE)
 target_include_directories(hiir INTERFACE "Thirdparty/hiir")
 
