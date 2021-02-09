@@ -33,6 +33,7 @@ target_sources(Hera
   PRIVATE
   "Source/Hera.h"
   "Source/Hera.cpp"
+  "Source/HeraDefs.h"
   "Source/HeraEnvelope.h"
   "Source/HeraEnvelope.cpp"
   "Source/HeraLFO.h"
