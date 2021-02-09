@@ -40,6 +40,8 @@ target_sources(Hera
   "Source/HeraLFO.cpp"
   "Source/HeraLFOWithEnvelope.h"
   "Source/HeraLFOWithEnvelope.cpp"
+  "Source/HeraArpeggiator.h"
+  "Source/HeraArpeggiator.cpp"
   "Source/HeraVCF.h"
   "Source/HeraTables.h"
   "Source/HeraTables.cpp"

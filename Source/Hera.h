@@ -2,6 +2,7 @@
 
 #pragma once
 #include "HeraDefs.h"
+#include "HeraArpeggiator.h"
 #include "HeraEnvelope.h"
 #include "HeraLFOWithEnvelope.h"
 #include "HeraDCO.hxx"
@@ -23,7 +24,9 @@ public:
     void setupParameters();
     juce::AudioProcessorValueTreeState::ParameterLayout makeParameterLayout();
     void setCurrentPlaybackSampleRate(double newRate) override;
+    void setTempo(double tempo) { arp.setTempo(tempo); }
     void reserveBlockSize(int blockSize);
+    void renderNextBlockUsingArpeggiator(juce::AudioBuffer<float> &outputAudio, const juce::MidiBuffer &inputMidi, int startSample, int numSamples);
     void renderNextSubBlock(juce::AudioBuffer<float> &outputAudio, int startSample, int numSamples) override;
 
     void parameterValueChanged(int parameterIndex, float newValue) override;
@@ -43,6 +46,7 @@ private:
     void softClip(juce::AudioBuffer<float> &buffer, int startSample, int numSamples);
 
 private:
+    HeraArpeggiator arp;
     HeraLFOWithEnvelope lfo;
     juce::AudioBuffer<float> lfoBuffer;
     juce::AudioBuffer<float> detuneBuffer;

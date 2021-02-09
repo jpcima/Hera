@@ -111,6 +111,10 @@ void HeraAudioProcessor::processBlock(juce::AudioBuffer<float> &buffer,
     // never happens if the host sends correct block size
     ensureBlockSize(numSamples);
 
+    juce::AudioPlayHead::CurrentPositionInfo positionInfo;
+    if (getPlayHead()->getCurrentPosition(positionInfo))
+        synthesizer.setTempo(positionInfo.bpm);
+
 #if HERA_OVERSAMPLING > 1
     // shift all frame times according to the oversampling factor
     osMidiMessages.clear();
@@ -119,12 +123,12 @@ void HeraAudioProcessor::processBlock(juce::AudioBuffer<float> &buffer,
 
     // generate oversampled
     osStereoBuffer.clear(0, HERA_OVERSAMPLING * numSamples);
-    synthesizer.renderNextBlock(osStereoBuffer, osMidiMessages, 0, HERA_OVERSAMPLING * numSamples);
+    synthesizer.renderNextBlockUsingArpeggiator(osStereoBuffer, osMidiMessages, 0, HERA_OVERSAMPLING * numSamples);
 
     // downsample
     os.downsample(osStereoBuffer.getArrayOfReadPointers(), buffer.getArrayOfWritePointers(), numSamples);
 #else
-    synthesizer.renderNextBlock(buffer, midiMessages, 0, numSamples);
+    synthesizer.renderNextBlockUsingArpeggiator(buffer, midiMessages, 0, numSamples);
 #endif
 }
 

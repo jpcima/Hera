@@ -30,6 +30,7 @@ HeraSynthesiser::HeraSynthesiser()
 void HeraSynthesiser::setCurrentPlaybackSampleRate(double newRate)
 {
     MPESynthesiser::setCurrentPlaybackSampleRate(newRate);
+    arp.setSampleRate(newRate);
     lfo.setSampleRate(newRate);
     smoothPitchModDepth.setSampleRate(newRate);
     smoothCutoff.setSampleRate(newRate);
@@ -235,6 +236,22 @@ juce::RangedAudioParameter *HeraSynthesiser::createParameter(int index, HeraPara
         param = new juce::AudioParameterBool("ChorusII", "Chorus II", false);
         domain = kHeraParameterIsForSynth;
         break;
+    case kHeraParamArpEnable:
+        param = new juce::AudioParameterBool("ARPEnable", "Arpeggiator enable", false);
+        domain = kHeraParameterIsForSynth;
+        break;
+    case kHeraParamArpMode:
+        param = new juce::AudioParameterChoice("ARPMode", "Arpeggiator mode", {"Up", "Up/Down", "Down"}, 0);
+        domain = kHeraParameterIsForSynth;
+        break;
+    case kHeraParamArpStep:
+        param = new juce::AudioParameterChoice("ARPStep", "Arpeggiator step", {"1/4", "1/8", "1/16", "1/4T", "1/8T", "1/16T"}, 1);
+        domain = kHeraParameterIsForSynth;
+        break;
+    case kHeraParamArpRange:
+        param = new juce::AudioParameterInt("ARPRange", "Arpeggiator range", 1, 3, 1);
+        domain = kHeraParameterIsForSynth;
+        break;
     }
 
     return param;
@@ -268,6 +285,11 @@ void HeraSynthesiser::softClip(juce::AudioBuffer<float> &buffer, int startSample
 }
 
 ///
+void HeraSynthesiser::renderNextBlockUsingArpeggiator(juce::AudioBuffer<float> &outputAudio, const juce::MidiBuffer &inputMidi, int startSample, int numSamples)
+{
+    renderNextBlock(outputAudio, arp.processBlock(inputMidi, numSamples), startSample, numSamples);
+}
+
 void HeraSynthesiser::renderNextSubBlock(juce::AudioBuffer<float> &outputAudio, int startSample, int numSamples)
 {
     juce::AudioBuffer<float> monoAudio(outputAudio.getArrayOfWritePointers(), 1, outputAudio.getNumSamples());
@@ -383,6 +405,18 @@ void HeraSynthesiser::parameterValueChanged(int parameterIndex, float newValue)
         break;
     case kHeraParamChorusII:
         chorus.setChorusII(newValue);
+        break;
+    case kHeraParamArpEnable:
+        arp.setEnabled(newValue > 0.5);
+        break;
+    case kHeraParamArpMode:
+        arp.setMode((int)newValue);
+        break;
+    case kHeraParamArpStep:
+        arp.setStep((int)newValue);
+        break;
+    case kHeraParamArpRange:
+        arp.setRange((int)newValue);
         break;
     }
 }
