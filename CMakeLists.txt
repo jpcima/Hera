@@ -10,6 +10,10 @@ option(HERA_FORCE_DEBUG "Enable debug mode regardless of build configuration" OF
 
 add_subdirectory("Thirdparty/JUCE" EXCLUDE_FROM_ALL)
 
+if(MSVC)
+  add_definitions(-D_USE_MATH_DEFINES)
+endif()
+
 if(HERA_FORCE_DEBUG)
   target_compile_definitions(juce_core
     INTERFACE
