@@ -24,7 +24,7 @@ jobs:
       shell: bash
       run: |
         sudo apt-get -y update
-        sudo apt-get -y install libgl-dev libx11-dev
+        sudo apt-get -y install libgl-dev libx11-dev libxext-dev libxrandr-dev
     - name: Create Build Environment
       working-directory: ${{runner.workspace}}
       run: cmake -E make_directory build
